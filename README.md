@@ -1,85 +1,85 @@
 # arm-kobo-docs
 
-Este repositório contém a documentação detalhada e os códigos-fonte dos repositórios do KoboToolbox adaptados para a arquitetura ARM, permitindo que a aplicação seja executada em dispositivos como o Raspberry Pi 4. A solução foi desenvolvida com o objetivo de oferecer uma alternativa de baixo custo e eficiente para ambientes com restrições de hardware, mantendo todas as funcionalidades do KoboToolbox.
+This repository contains detailed documentation and the source codes of the KoboToolbox repositories adapted for the ARM architecture, allowing the application to run on devices such as the Raspberry Pi 4. The solution was developed to provide a low-cost and efficient alternative for hardware-restricted environments while maintaining all the functionalities of the KoboToolbox.
 
-## Sobre o KoboToolbox
+## About KoboToolbox
 
-O KoboToolbox é uma plataforma de código aberto amplamente utilizada por organizações humanitárias, institutos de pesquisa e instituições governamentais para a coleta, gerenciamento e análise de dados em campo. Desenvolvida para ambientes com conectividade limitada, a aplicação suporta tanto a coleta de dados offline quanto online, permitindo a administração de grandes volumes de informações de forma eficiente. Seus principais módulos incluem ferramentas para criação de formulários, preenchimento em interfaces web (Enketo) e integração com aplicativos móveis (KoBoCollect). Mais informações podem ser encontradas no [repositório oficial do KoboToolbox](https://github.com/kobotoolbox).
+KoboToolbox is an open-source platform widely used by humanitarian organizations, research institutes, and government institutions for field data collection, management, and analysis. Designed for environments with limited connectivity, the application supports both offline and online data collection, enabling the management of large volumes of information efficiently. Its main modules include tools for form creation, web interface data entry (Enketo), and integration with mobile applications (KoBoCollect). More information can be found in the [official KoboToolbox repository](https://github.com/kobotoolbox).
 
-A adaptação desta solução para ARM visa possibilitar que a plataforma rode em dispositivos mais acessíveis, como o Raspberry Pi, sem comprometer a robustez e a funcionalidade do KoboToolbox. Essa adaptação é especialmente valiosa em projetos com recursos limitados ou em contextos onde o uso de servidores tradicionais pode não ser viável.
+The adaptation of this solution for ARM aims to enable the platform to run on more accessible devices like the Raspberry Pi without compromising the robustness and functionality of KoboToolbox. This adaptation is particularly valuable in projects with limited resources or in contexts where traditional server usage might not be feasible.
 
-## Visão Geral
+## Overview
 
-O objetivo deste repositório é fornecer um ambiente completo do KoboToolbox com suporte à arquitetura ARM. Isso inclui a refatoração de diversos módulos da aplicação e a recompilação das imagens Docker para garantir compatibilidade com dispositivos ARM. Abaixo estão listados os repositórios alterados e suas respectivas funcionalidades.
+The objective of this repository is to provide a complete KoboToolbox environment with ARM architecture support. This includes the refactoring of various application modules and the recompilation of Docker images to ensure compatibility with ARM devices. Below is a list of the altered repositories and their respective functionalities.
 
-### Repositórios e Módulos Alterados
+### Altered Repositories and Modules
 
-| Módulo             | Repositório ARM Adaptado                                             | Descrição                                                                                  |
+| Module             | Adapted ARM Repository                                             | Description                                                                                  |
 |--------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| kobo-install       | [arm-kobo-install](https://github.com/giovannimaffeo/arm-kobo-install) | Ferramenta para configuração e orquestração dos containers do KoboToolbox.                  |
-| enketo-express     | [arm-kobo-enketo-express](https://github.com/giovannimaffeo/arm-kobo-enketo-express) | Interface web para preenchimento de formulários.                                           |
-| kpi                | [arm-kobo-kpi](https://github.com/giovannimaffeo/arm-kobo-kpi)       | Módulo responsável pela criação e gerenciamento de formulários.                             |
-| nginx-certbot      | [arm-kobo-nginx-certbot](https://github.com/giovannimaffeo/arm-kobo-nginx-certbot) | Configuração do NGINX com suporte HTTPS via Let's Encrypt.                                  |
-| kobo-docker        | [arm-kobo-docker](https://github.com/giovannimaffeo/arm-kobo-docker) | Repositório principal com as configurações de containers e serviços do KoboToolbox.        |
-| kobocat            | [kobocat (repositório oficial)](https://github.com/kobotoolbox/kobocat) | Módulo de backend responsável pelo armazenamento de respostas. (Nenhuma alteração foi necessária) |
+| kobo-install       | [arm-kobo-install](https://github.com/giovannimaffeo/arm-kobo-install) | Tool for configuring and orchestrating KoboToolbox containers.                              |
+| enketo-express     | [arm-kobo-enketo-express](https://github.com/giovannimaffeo/arm-kobo-enketo-express) | Web interface for form filling.                                                             |
+| kpi                | [arm-kobo-kpi](https://github.com/giovannimaffeo/arm-kobo-kpi)       | Module responsible for form creation and management.                                        |
+| nginx-certbot      | [arm-kobo-nginx-certbot](https://github.com/giovannimaffeo/arm-kobo-nginx-certbot) | NGINX configuration with HTTPS support via Let's Encrypt.                                   |
+| kobo-docker        | [arm-kobo-docker](https://github.com/giovannimaffeo/arm-kobo-docker) | Main repository with container and service configurations for KoboToolbox.                  |
+| kobocat            | [kobocat (official repository)](https://github.com/kobotoolbox/kobocat) | Backend module responsible for storing responses. (No changes were necessary)               |
 
-## Instruções de Instalação
+## Installation Instructions
 
-### 3. Atualizar Código Local
+### 3. Update Local Code
 
-1. Criar um diretório chamado `kobo`.
-2. Clonar os repositórios ARM adaptados abaixo:
+1. Create a directory named `kobo`.
+2. Clone the adapted ARM repositories below:
    - [kobo-install](https://github.com/giovannimaffeo/arm-kobo-install)
    - [enketo-express](https://github.com/giovannimaffeo/arm-kobo-enketo-express)
    - [kpi](https://github.com/giovannimaffeo/arm-kobo-kpi)
    - [nginx-certbot](https://github.com/giovannimaffeo/arm-kobo-nginx-certbot)
    - [kobo-docker](https://github.com/giovannimaffeo/arm-kobo-docker)
-   - [kobocat](https://github.com/kobotoolbox/kobocat) (repositório oficial)
+   - [kobocat](https://github.com/kobotoolbox/kobocat) (official repository)
 
-3. Dentro do Raspberry Pi, para cada repositório clonado, execute:
+3. Within the Raspberry Pi, for each cloned repository, execute:
 ```bash
 git checkout dev
 ```
 
-### 4. Compilar as Imagens para ARM
+### 4. Build ARM-Compatible Images
 
-Será necessário compilar as imagens dos seguintes módulos:
+It will be necessary to compile the images of the following modules:
 - enketo-express
 - kpi
 - kobocat
 
-Para compilar as imagens, execute os comandos abaixo para cada repositório correspondente:
+To build the images, run the commands below for each corresponding repository:
 ```bash
-cd <repositório>
-docker build . -t <nome-módulo>-arm
+cd <repository>
+docker build . -t <module-name>-arm
 ```
 
-Certifique-se de que o nome das imagens seja exatamente como mostrado para garantir a integração correta no setup.
+Ensure that the image names are exactly as shown to guarantee correct setup integration.
 
-### 5. Configurar KoboToolbox
+### 5. Configure KoboToolbox
 
-1. Acesse o diretório `kobo-install`:
+1. Access the `kobo-install` directory:
 ```bash
 cd kobo/kobo-install
 ```
-2. Execute o setup:
+2. Run the setup:
 ```bash
 python3 run.py --setup
 ```
 
-### Detalhamento das Alterações dos Módulos do KoboToolbox
+### Detailing Changes in KoboToolbox Modules
 
-Algumas adaptações foram necessárias para garantir a execução do KoboToolbox na arquitetura ARM. Essas modificações envolvem principalmente ajustes nos arquivos Dockerfiles e Docker Compose para garantir a compatibilidade e estabilidade da aplicação em dispositivos como o Raspberry Pi. A seguir, estão descritas as principais alterações realizadas para cada módulo.
+Some adaptations were necessary to ensure KoboToolbox runs on ARM architecture. These modifications primarily involve adjustments to Dockerfiles and Docker Compose files to ensure compatibility and stability of the application on devices like the Raspberry Pi. Below are the main changes made for each module.
 
-#### 1. Enketo Express 
+#### 1. Enketo Express
 
-No módulo Enketo Express, responsável pela interface web de preenchimento de formulários, foi necessário incluir o pacote `chromium` para garantir compatibilidade com a arquitetura ARM. Esse pacote é essencial para rodar certas funcionalidades baseadas em navegadores. A imagem mostra a modificação feita no Dockerfile do módulo, onde a linha adicionada garante a instalação correta desse pacote.
+In the Enketo Express module, responsible for the web interface for form filling, it was necessary to include the `chromium` package to ensure compatibility with the ARM architecture. This package is essential for running certain browser-based functionalities. The image shows the modification made in the module's Dockerfile, where the added line ensures the correct installation of this package.
 
 ![image 16](https://github.com/user-attachments/assets/bf00a24f-d610-4073-a4f0-c5f227ae17e3)
 
-#### 2. Kobo Docker 
+#### 2. Kobo Docker
 
-No repositório principal do KoboToolbox, foi necessário modificar os arquivos Docker Compose para substituir as imagens padrão por imagens compatíveis com ARM. A segunda e terceira imagens ilustram a mudança nas referências de imagem de módulos críticos, como `kobocat`, `kpi` e `enketo-express`, para suas versões ARM.
+In the main KoboToolbox repository, it was necessary to modify the Docker Compose files to replace the standard images with ARM-compatible images. The second and third images illustrate the change in image references for critical modules like `kobocat`, `kpi`, and `enketo-express` to their ARM versions.
 
 ![image 17](https://github.com/user-attachments/assets/6cf450ec-b210-44f1-8d52-aa28465ce0b9)
 
@@ -87,18 +87,18 @@ No repositório principal do KoboToolbox, foi necessário modificar os arquivos 
 
 #### 3. KPI
 
-No módulo KPI, utilizado para a criação e gerenciamento de formulários, foi necessário adicionar manualmente a instalação de diversos pacotes para garantir que o build funcionasse corretamente na arquitetura ARM. A quarta imagem destaca essas adições ao Dockerfile do KPI, garantindo que todas as dependências sejam instaladas corretamente durante o processo de compilação.
+In the KPI module, used for creating and managing forms, it was necessary to manually add the installation of various packages to ensure the build would work correctly on ARM architecture. The fourth image highlights these additions to the KPI Dockerfile, ensuring all dependencies are correctly installed during the build process.
 
 ![image 19](https://github.com/user-attachments/assets/5f37881b-b951-4bd1-9654-133891976721)
 
 #### 4. NGINX Certbot
 
-Para o módulo NGINX Certbot, que configura o suporte HTTPS utilizando o Let’s Encrypt, foram feitas adaptações no script de inicialização para considerar os subdomínios configurados para a arquitetura ARM. A quinta imagem mostra a adaptação das configurações para permitir o funcionamento correto da aplicação em ambientes ARM.
+For the NGINX Certbot module, which configures HTTPS support using Let’s Encrypt, adjustments were made to the initialization script to consider the subdomains configured for ARM architecture. The fifth image shows the adaptation of the settings to allow the application to function correctly in ARM environments.
 
 ![image 20](https://github.com/user-attachments/assets/ce343ff8-ae5b-4253-bb7d-0fc79bcbf817)
 
-Essas alterações garantem que todos os módulos principais do KoboToolbox rodem de forma estável em dispositivos ARM, permitindo sua utilização em ambientes com hardware limitado, como o Raspberry Pi.
+These changes ensure that all main KoboToolbox modules run stably on ARM devices, enabling their use in hardware-limited environments like the Raspberry Pi.
 
 ---
 
-Este repositório oferece uma solução prática e eficiente para quem deseja rodar o KoboToolbox em arquitetura ARM, mantendo as mesmas funcionalidades da arquitetura original.
+This repository provides a practical and efficient solution for those looking to run KoboToolbox on ARM architecture while maintaining the same functionality as the original architecture.
